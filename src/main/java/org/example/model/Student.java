@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -102,5 +103,20 @@ public class Student {
                 ", dateOfBirth=" + dateOfBirth +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(getId(), student.getId()) && Objects.equals(getName(), student.getName()) &&
+                Objects.equals(getEmail(), student.getEmail()) &&
+                Objects.equals(getDateOfBirth(), student.getDateOfBirth());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getEmail(), getDateOfBirth());
     }
 }
